@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SYSGERModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="SYSGEREntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="domaine_ref" EntityType="SYSGERModel.domaine_ref" />
+    <EntitySet Name="niveau_education_ref" EntityType="SYSGERModel.niveau_education_ref" />
+    <EntitySet Name="niveau_ref" EntityType="SYSGERModel.niveau_ref" />
+    <EntitySet Name="position_ref" EntityType="SYSGERModel.position_ref" />
+    <EntitySet Name="recrutements" EntityType="SYSGERModel.recrutement" />
+    <EntitySet Name="sysdiagrams" EntityType="SYSGERModel.sysdiagram" />
+    <AssociationSet Name="FK_recrutements_domaine_ref" Association="SYSGERModel.FK_recrutements_domaine_ref">
+      <End Role="domaine_ref" EntitySet="domaine_ref" />
+      <End Role="recrutements" EntitySet="recrutements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recrutements_niveau_education_ref" Association="SYSGERModel.FK_recrutements_niveau_education_ref">
+      <End Role="niveau_education_ref" EntitySet="niveau_education_ref" />
+      <End Role="recrutements" EntitySet="recrutements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recrutements_niveau_ref" Association="SYSGERModel.FK_recrutements_niveau_ref">
+      <End Role="niveau_ref" EntitySet="niveau_ref" />
+      <End Role="recrutements" EntitySet="recrutements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recrutements_niveau_ref1" Association="SYSGERModel.FK_recrutements_niveau_ref1">
+      <End Role="niveau_ref" EntitySet="niveau_ref" />
+      <End Role="recrutements" EntitySet="recrutements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recrutements_position_ref" Association="SYSGERModel.FK_recrutements_position_ref">
+      <End Role="position_ref" EntitySet="position_ref" />
+      <End Role="recrutements" EntitySet="recrutements" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="domaine_ref">
+    <Key>
+      <PropertyRef Name="domaineID" />
+    </Key>
+    <Property Name="domaineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="domaine_Desc" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="creation_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="creation_date" Type="DateTime" />
+    <Property Name="update_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="update_date" Type="DateTime" />
+    <NavigationProperty Name="recrutements" Relationship="SYSGERModel.FK_recrutements_domaine_ref" FromRole="domaine_ref" ToRole="recrutements" />
+  </EntityType>
+  <EntityType Name="niveau_education_ref">
+    <Key>
+      <PropertyRef Name="niveauEducationID" />
+    </Key>
+    <Property Name="niveauEducationID" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="niveauEducation_Desc" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="creation_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="creation_date" Type="DateTime" />
+    <Property Name="update_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="update_date" Type="DateTime" />
+    <NavigationProperty Name="recrutements" Relationship="SYSGERModel.FK_recrutements_niveau_education_ref" FromRole="niveau_education_ref" ToRole="recrutements" />
+  </EntityType>
+  <EntityType Name="niveau_ref">
+    <Key>
+      <PropertyRef Name="niveauID" />
+    </Key>
+    <Property Name="niveauID" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+    <Property Name="niveau_Desc" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="creation_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="creation_date" Type="DateTime" />
+    <Property Name="update_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="update_date" Type="DateTime" />
+    <NavigationProperty Name="recrutements" Relationship="SYSGERModel.FK_recrutements_niveau_ref" FromRole="niveau_ref" ToRole="recrutements" />
+    <NavigationProperty Name="recrutements1" Relationship="SYSGERModel.FK_recrutements_niveau_ref1" FromRole="niveau_ref" ToRole="recrutements" />
+  </EntityType>
+  <EntityType Name="position_ref">
+    <Key>
+      <PropertyRef Name="positionID" />
+    </Key>
+    <Property Name="positionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="positions_Desc" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="creation_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="creation_date" Type="DateTime" />
+    <Property Name="update_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="update_date" Type="DateTime" />
+    <NavigationProperty Name="recrutements" Relationship="SYSGERModel.FK_recrutements_position_ref" FromRole="position_ref" ToRole="recrutements" />
+  </EntityType>
+  <EntityType Name="recrutement">
+    <Key>
+      <PropertyRef Name="recrutementID" />
+    </Key>
+    <Property Name="recrutementID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="refID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="prenom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="dateNaissance" Type="DateTime" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="phone1" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="phone2" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="domaineID" Type="Int32" />
+    <Property Name="niveauEducationID" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="autresCompetences" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="niveauInformatiqueID" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+    <Property Name="anneesExperience" Type="Int32" />
+    <Property Name="niveauAnglaisID" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+    <Property Name="positionID" Type="Int32" />
+    <Property Name="statut" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="refererPar" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="creation_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="creation_date" Type="DateTime" />
+    <Property Name="update_user" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="update_date" Type="DateTime" />
+    <NavigationProperty Name="domaine_ref" Relationship="SYSGERModel.FK_recrutements_domaine_ref" FromRole="recrutements" ToRole="domaine_ref" />
+    <NavigationProperty Name="niveau_education_ref" Relationship="SYSGERModel.FK_recrutements_niveau_education_ref" FromRole="recrutements" ToRole="niveau_education_ref" />
+    <NavigationProperty Name="niveau_ref" Relationship="SYSGERModel.FK_recrutements_niveau_ref" FromRole="recrutements" ToRole="niveau_ref" />
+    <NavigationProperty Name="niveau_ref1" Relationship="SYSGERModel.FK_recrutements_niveau_ref1" FromRole="recrutements" ToRole="niveau_ref" />
+    <NavigationProperty Name="position_ref" Relationship="SYSGERModel.FK_recrutements_position_ref" FromRole="recrutements" ToRole="position_ref" />
+    <Property Type="String" Name="sexe" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="adresse" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_recrutements_domaine_ref">
+    <End Role="domaine_ref" Type="SYSGERModel.domaine_ref" Multiplicity="0..1" />
+    <End Role="recrutements" Type="SYSGERModel.recrutement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="domaine_ref">
+        <PropertyRef Name="domaineID" />
+      </Principal>
+      <Dependent Role="recrutements">
+        <PropertyRef Name="domaineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recrutements_niveau_education_ref">
+    <End Role="niveau_education_ref" Type="SYSGERModel.niveau_education_ref" Multiplicity="0..1" />
+    <End Role="recrutements" Type="SYSGERModel.recrutement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="niveau_education_ref">
+        <PropertyRef Name="niveauEducationID" />
+      </Principal>
+      <Dependent Role="recrutements">
+        <PropertyRef Name="niveauEducationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recrutements_niveau_ref">
+    <End Role="niveau_ref" Type="SYSGERModel.niveau_ref" Multiplicity="0..1" />
+    <End Role="recrutements" Type="SYSGERModel.recrutement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="niveau_ref">
+        <PropertyRef Name="niveauID" />
+      </Principal>
+      <Dependent Role="recrutements">
+        <PropertyRef Name="niveauAnglaisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recrutements_niveau_ref1">
+    <End Role="niveau_ref" Type="SYSGERModel.niveau_ref" Multiplicity="0..1" />
+    <End Role="recrutements" Type="SYSGERModel.recrutement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="niveau_ref">
+        <PropertyRef Name="niveauID" />
+      </Principal>
+      <Dependent Role="recrutements">
+        <PropertyRef Name="niveauInformatiqueID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recrutements_position_ref">
+    <End Role="position_ref" Type="SYSGERModel.position_ref" Multiplicity="0..1" />
+    <End Role="recrutements" Type="SYSGERModel.recrutement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="position_ref">
+        <PropertyRef Name="positionID" />
+      </Principal>
+      <Dependent Role="recrutements">
+        <PropertyRef Name="positionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
